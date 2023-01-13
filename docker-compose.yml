@@ -12,3 +12,24 @@ services:
 
 volumes:
   postgres:
+
+
+# version: '3.9'
+
+# services:
+#   postgres:
+#     image: postgres
+#     restart: always
+#     ports:
+#       - '5432:5432'
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=password123
+#     # env_file:
+#     #   - .env
+#     volumes:
+#       - 'postgres:/var/lib/postgresql/data'
+
+# volumes:
+#   postgres:
+# # change this file back to original but comment out what changed
