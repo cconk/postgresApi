@@ -1,7 +1,7 @@
 import client from '../database';
 
 export type Weapon = {
-  id?: Number;
+  id?: number;
   name: string;
   type: string;
   weight: number;
