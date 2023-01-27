@@ -1,6 +1,5 @@
 import client from '../database';
 
-
 export type Book = {
   id?: number;
   title: string;
@@ -44,16 +43,10 @@ export class BookStore {
   async create(b: Book): Promise<Book> {
     try {
       const sql = 'INSERT INTO books (title, author, total_pages, type, summary) VALUES ($1, $2, $3, $4, $5) RETURNING *'
-      // @ts-ignore
-      const conn = await client.connect()
-
-      const result = await conn
-        .query(sql, [b.title, b.author, b.total_pages, b.type, b.summary])
-
+      const conn = await client.connect();
+      const result = await conn.query(sql, [b.title, b.author, b.total_pages, b.type, b.summary])
       const book = result.rows[0]
-
       conn.release()
-
       return book
     } catch (err) {
       throw new Error(`Could not add new book ${b.title}. Error: ${err}`)
