@@ -4,15 +4,13 @@
     "host": "127.0.0.1",
     "database": "devdb",
     "user": "devuser",
-    "password": "devpassword",
-    "port": "5432:5432"
+    "password": "devpassword"
   },
   "test": {
     "driver": "pg",
-    "host": "127.0.0.2",
+    "host": "127.0.0.1",
     "database": "testdb",
-    "user": "testuser",
-    "password": "testpassword",
-    "port": "5433:5432"
+    "user": "devuser",
+    "password": "devpassword"
   }
 }

@@ -1,3 +1,4 @@
+// @ts-ignore
 import client from '../database';
 
 export type Weapon = {
@@ -11,6 +12,7 @@ export class MythicalWeaponStore {
 
   async index(): Promise<Weapon[]> {
     try {
+      // @ts-ignore
       const conn = await client.connect();
       const sql = 'SELECT * FROM mythical_weapons';
       const result = await conn.query(sql);

@@ -1,20 +1,9 @@
 import { BookStore } from '../books';
-import supertest from 'supertest';
-import { User, UserStore } from '../users'
-import app from '../../server';
 
 
 const store = new BookStore();
-const user: User = {
-  username: 'testuser',
-  password: 'testpassword'
-};
-const request = supertest(app);
-let token: any;
-
 describe("Book Store", () => {
   beforeAll(async () => {
-    token = await request.post('/users').send(user);
   });
 
   it('should have an index method', () => {

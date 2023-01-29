@@ -1,3 +1,4 @@
+// @ts-ignore
 import client from '../database';
 
 export type Book = {
@@ -13,6 +14,7 @@ export class BookStore {
 
   async index(): Promise<Book[]> {
     try {
+      // @ts-ignore
       const conn = await client.connect();
       const sql = 'SELECT * FROM books';
       const result = await conn.query(sql);
@@ -43,6 +45,7 @@ export class BookStore {
   async create(b: Book): Promise<Book> {
     try {
       const sql = 'INSERT INTO books (title, author, total_pages, type, summary) VALUES ($1, $2, $3, $4, $5) RETURNING *'
+      // @ts-ignore
       const conn = await client.connect();
       const result = await conn.query(sql, [b.title, b.author, b.total_pages, b.type, b.summary])
       const book = result.rows[0]

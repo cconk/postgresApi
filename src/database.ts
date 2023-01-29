@@ -4,44 +4,38 @@ import { Pool } from 'pg'
 dotenv.config()
 
 const {
-  DEV_HOST,
-  DEV_DB_USER,
-  DEV_DB_PASSWORD,
-  DEV_DB_NAME,
-  TEST_HOST,
-  TEST_DB_USER,
-  TEST_DB_PASSWORD,
-  TEST_DB_NAME,
+  POSTGRES_HOST,
+  POSTGRES_DB,
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+  POSTGRES_TEST_DB,
   ENV
 } = process.env;
 
-const client: Pool = new Pool({
-  host: ENV === 'dev' ? DEV_HOST : TEST_HOST,
-  database: ENV === 'dev' ? DEV_DB_NAME : TEST_DB_NAME,
-  user: ENV === 'dev' ? DEV_DB_USER : TEST_DB_USER,
-  password: ENV === 'dev' ? DEV_DB_PASSWORD : TEST_DB_PASSWORD,
-})
-console.log(client);
+// const client: Pool = new Pool({
+//   host: POSTGRES_HOST,
+//   database: ENV === 'dev' ? POSTGRES_DEV_DB : POSTGRES_TEST_DB,
+//   user: ENV === 'dev' ? POSTGRES_USER : POSTGRES_TEST_USER,
+//   password: ENV === 'dev' ? POSTGRES_PASSWORD : POSTGRES_TEST_PASSWORD,
+// })
 //console.log(process.env)
-// let client: Pool
-// console.log(ENV)
+let client
+if (ENV === 'test') {
+  client = new Pool({
+    host: POSTGRES_HOST,
+    database: POSTGRES_TEST_DB,
+    user: POSTGRES_USER,
+    password: POSTGRES_PASSWORD
+  })
+}
 
-// if (ENV === 'test') {
-//   client = new Pool({
-//     host: POSTGRES_HOST,
-//     database: TEST_DB_NAME,
-//     user: TEST_DB_USER,
-//     password: TEST_DB_PASSWORD
-//   })
-// }
-
-// if (ENV === 'dev') {
-//   client = new Pool({
-//     host: POSTGRES_HOST,
-//     database: DEV_DB_NAME,
-//     user: DEV_DB_USER,
-//     password: DEV_DB_PASSWORD
-//   })
-// }
+if (ENV === 'dev') {
+  client = new Pool({
+    host: POSTGRES_HOST,
+    database: POSTGRES_DB,
+    user: POSTGRES_USER,
+    password: POSTGRES_PASSWORD
+  })
+}
 
 export default client;

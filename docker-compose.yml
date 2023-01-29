@@ -1,5 +1,4 @@
 version: '3.9'
-
 # services:
 #   postgres:
 #     image: postgres
@@ -13,48 +12,50 @@ version: '3.9'
 # volumes:
 #   postgres:
 
-services:
-  dev-db:
-    image: postgres
-    environment:
-      - POSTGRES_USER=${DEV_DB_USER}
-      - POSTGRES_PASSWORD=${DEV_DB_PASSWORD}
-      - POSTGRES_DB=${DEV_DB_NAME}
-    ports:
-      - "5432:5432"
-    volumes:
-      - 'postgres:/var/lib/postgresql/data'
-    env_file:
-      - .env
-  test-db:
-    image: postgres
-    environment:
-      - POSTGRES_USER=${TEST_DB_USER}
-      - POSTGRES_PASSWORD=${TEST_DB_PASSWORD}
-      - POSTGRES_DB=${TEST_DB_NAME}
-    ports:
-      - "5433:5432"
-    env_file:
-      - .env
-volumes:
-  postgres:
+# services:
+#   dev-db:
+#     image: postgres
+#     environment:
+#       - POSTGRES_USER=${DEV_DB_USER}
+#       - POSTGRES_PASSWORD=${DEV_DB_PASSWORD}
+#       - POSTGRES_DB=${DEV_DB_NAME}
+#     ports:
+#       - "5432:5432"
+#     # volumes:
+#     #   - 'postgres:/var/lib/postgresql/data'
+#     env_file:
+#       - .env
+#   test-db:
+#     image: postgres
+#     environment:
+#       - POSTGRES_USER=${TEST_DB_USER}
+#       - POSTGRES_PASSWORD=${TEST_DB_PASSWORD}
+#       - POSTGRES_DB=${TEST_DB_NAME}
+#     ports:
+#       - "5433:5432"
+#     # volumes:
+#     #   - 'postgres1:/var/lib/postgresql/data'
+#     env_file:
+#       - .env
+# volumes:
+#   postgres:
 
 # version: '3.9'
 
-# services:
-#   postgres:
-#     image: postgres
-#     restart: always
-#     ports:
-#       - '5432:5432'
-#     environment:
-#       - POSTGRES_USER=postgres
-#       - POSTGRES_PASSWORD=password123
-#     # env_file:
-#     #   - .env
-#     volumes:
-#       - 'postgres:/var/lib/postgresql/data'
+services:
+  postgres:
+    image: postgres
+    ports:
+      - '5432:5432'
+   
+    env_file:
+      - .env
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
 
-# volumes:
-#   postgres:
+volumes:
+  postgres:
 # # change this file back to original but comment out what changed
+ # environment:
+    #   - POSTGRES_USER=postgres
+    #   - POSTGRES_PASSWORD=password123

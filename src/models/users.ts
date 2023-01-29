@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt'
+// @ts-ignore
 import client from '../database';
 
 const pepper = process.env.BCRYPT_PASSWORD;
@@ -14,6 +15,7 @@ export class UserStore {
 
   async index(): Promise<User[]> {
     try {
+      // @ts-ignore
       const conn = await client.connect();
       const sql = 'SELECT * FROM users';
       const result = await conn.query(sql);
@@ -64,6 +66,7 @@ export class UserStore {
   }
 
   async authenticate(username: string, password: string): Promise<User | null> {
+    // @ts-ignore
     const conn = await client.connect()
     const sql = 'SELECT password_digest FROM users WHERE username=($1)'
 
@@ -89,6 +92,7 @@ export class UserStore {
       const sql =
         'UPDATE users SET (username,password_digest) = ($2, $3) WHERE id=($1) RETURNING *';
       console.log(sql);
+      // @ts-ignore
       const conn = await client.connect();
 
       const hash = bcrypt.hashSync(
