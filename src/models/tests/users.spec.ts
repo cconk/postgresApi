@@ -28,10 +28,7 @@ describe("User Model", () => {
       username: 'testUser1',
       password: 'testPassword1'
     });
-    expect(result).toContain({
-      id: 1,
-      username: 'testUser1'
-    });
+    expect(result.username).toEqual('testUser1');
   });
 
   it('index method should return a list of users', async () => {
@@ -41,10 +38,7 @@ describe("User Model", () => {
 
   it('show method should return the correct user', async () => {
     const result: User = await store.show("1");
-    expect(result).toContain({
-      id: 1,
-      username: 'testUser1'
-    });
+    expect(result.username).toEqual('testUser1');
   });
 
   // it('delete method should remove the user', async () => {

@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt'
-// @ts-ignore
 import client from '../database';
 
 const pepper = process.env.BCRYPT_PASSWORD;
